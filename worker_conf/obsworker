@@ -332,6 +332,8 @@ case "$1" in
         done
         pushd "$workerbootdir" > /dev/null
         # Custom Ronan Cgroup
+        mount | grep -q $OBS_WORKER_DIRECTORY && umount $OBS_WORKER_DIRECTORY
+        mount -t tmpfs -o size="100%" tmpfs $OBS_WORKER_DIRECTORY
         echo -1 > /proc/sys/fs/binfmt_misc/arm
         ARM_BINFMT=/qemu/qemu-arm-binfmt
         echo ":arm:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00:\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff:$ARM_BINFMT:P" > /proc/sys/fs/binfmt_misc/register
@@ -357,6 +359,9 @@ case "$1" in
         killall bs_worker 2>/dev/null
         sleep 2
         killall -s 9 bs_worker 2>/dev/null
+        # Custom Ronan Cgroup
+        umount $OBS_WORKER_DIRECTORY
+        #
         rc_status -v
     ;;
     restart)

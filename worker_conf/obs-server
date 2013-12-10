@@ -103,7 +103,7 @@ OBS_REPO_SERVERS="obs.vannes:5252"
 #
 # 0 instances will automatically use the number of CPU's
 #
-OBS_WORKER_INSTANCES="1"
+OBS_WORKER_INSTANCES="4"
 
 ## Path:        Applications/OBS
 ## Description: The base directory, where sub directories for each worker will get created
@@ -112,6 +112,7 @@ OBS_WORKER_INSTANCES="1"
 ## Config:      OBS
 #
 #
+#OBS_WORKER_DIRECTORY="/var/run/obs/worker_chroot"
 OBS_WORKER_DIRECTORY=""
 
 ## Path:        Applications/OBS
@@ -171,7 +172,7 @@ OBS_USE_SLP="no"
 # Enable caching requires a given directory here. Be warned, content will be
 # removed there !
 # 
-OBS_CACHE_DIR=""
+OBS_CACHE_DIR="/home/worker_cache"
 
 ## Path:        Applications/OBS
 ## Description: Defines the package cache size
@@ -181,7 +182,7 @@ OBS_CACHE_DIR=""
 #
 # Set the size to 50% of the maximum usable size of this partition
 #
-OBS_CACHE_SIZE=""
+OBS_CACHE_SIZE="100000"
 
 ## Path:        Applications/OBS
 ## Description: Defines the nice level of running workers

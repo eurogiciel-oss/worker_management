@@ -1,0 +1,6 @@
+#!/usr/bin/sh
+for h in $(grep -v '#' worker_hosts); 
+do
+  echo ${h};
+  ssh root@${h} /etc/init.d/obsworker stop  ; 
+done
